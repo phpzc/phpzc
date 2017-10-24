@@ -1,0 +1,22 @@
+
+{
+  "name": "phpzc/phpzc",
+  "description": "phpzc",
+  "keywords": ["phpzc","php"],
+  "homepage": "https://github.com/phpzc/phpzc",
+  "type": "library",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Zhang Cheng",
+      "email": "zhang5474jj@163.com",
+      "homepage": "https://github.com/phpzc/phpzc"
+    }
+  ],
+  "autoload": {
+    "psr-0": {"Phpzc": "src/"}
+  },
+  "require": {
+    "php": ">=5.6.0"
+  }
+}
