@@ -7,7 +7,7 @@
  */
 namespace Phpzc\Redis;
 
-
+use redisent\Redis;
 /**
  * Class RedisCache
  *
@@ -43,20 +43,20 @@ class RedisCache
      * @param $funcname
      * @param $arguments
      *
+     * @return \redisent\Redis|mixed
      * @throws \Exception
-     * @return \Redis|null
      */
     public static function __callStatic($funcname, $arguments)
     {
         if(array_key_exists($funcname,self::$method))
         {
-            $dbNum = \Phpzc\Redis\RedisConfig::$configDatabaseNumber[self::$method[$funcname]];
+            $dbNum = RedisConfig::$configDatabaseNumber[self::$method[$funcname]];
 
             if( !isset($map[$funcname])){
 
-                $obj = new \Redis();
-                $config = \Phpzc\Redis\RedisConfig::getConfig();
-                $obj->connect($config['host'],$config['port'],3);
+
+                $config = RedisConfig::getConfig();
+                $obj = new Redis('redis://'.$config['host'].':'.$config['port'],3);
                 if(!empty($config['auth'])){
                     $obj->auth($config['auth']);
                 }

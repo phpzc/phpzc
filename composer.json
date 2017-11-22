@@ -17,6 +17,7 @@
     "psr-0": {"Phpzc": "src/"}
   },
   "require": {
-    "php": ">=5.6.0"
+    "php": ">=5.6.0",
+    "redisent/redisent": "dev-master"
   }
 }
