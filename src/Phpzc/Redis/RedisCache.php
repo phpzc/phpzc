@@ -12,13 +12,13 @@ use redisent\Redis;
  * Class RedisCache
  *
  *
- * @method \Redis|null SESSION() the redis db Store Session
- * @method \Redis|null COOKIE() the redis db Store COOKIE
- * @method \Redis|null CACHE() the redis db Store key value
- * @method \Redis|null ELK_LOG() the redis db Store elk log list data
- * @method \Redis|null API_LOG() the redis db Store api log data
- * @method \Redis|null TOKEN() the redis db Store token
- * @method \Redis|null LOCK() the redis db Store lock
+ * @method \redisent\Redis|null SESSION() the redis db Store Session
+ * @method \redisent\Redis|null COOKIE() the redis db Store COOKIE
+ * @method \redisent\Redis|null CACHE() the redis db Store key value
+ * @method \redisent\Redis|null ELK_LOG() the redis db Store elk log list data
+ * @method \redisent\Redis|null API_LOG() the redis db Store api log data
+ * @method \redisent\Redis|null TOKEN() the redis db Store token
+ * @method \redisent\Redis|null LOCK() the redis db Store lock
  *
  * @package Phpzc\Redis
  */
