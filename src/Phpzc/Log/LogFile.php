@@ -23,7 +23,7 @@ class LogFile
 
     public static function prefix()
     {
-        $time = new \DateTime('now');
+        $time = new \DateTime('now',new \DateTimeZone('PRC'));
 
         return '['.$time->getTimestamp().'][TimeZone:'.$time->getTimezone()->getName().']['.$time->format('Y-m-d H:i:s.u').']';
     }
