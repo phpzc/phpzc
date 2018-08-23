@@ -17,7 +17,7 @@
   },
   "require": {
     "php": ">=5.6.0",
-    "redisent/redis": "^1.10",
+    "redisent/redis": "1.10",
     "guzzlehttp/guzzle": "^6.3"
   }
 }
