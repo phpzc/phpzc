@@ -58,7 +58,8 @@ class RedisCache
 
 
                 $config = RedisConfig::getConfig();
-                $obj = new \Redis('redis://'.$config['host'].':'.$config['port'],3);
+                $obj = new \Redis();
+                $obj->connect($config['host'],$config['port'],1);
                 if(!empty($config['auth'])){
                     $obj->auth($config['auth']);
                 }
