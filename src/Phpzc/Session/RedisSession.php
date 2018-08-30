@@ -32,7 +32,7 @@ class RedisSession implements \SessionHandlerInterface
 
 
     /**
-     * @var \redisent\Redis
+     * @var \Redis
      */
     public static $redis = null;
 

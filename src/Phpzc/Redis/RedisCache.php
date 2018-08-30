@@ -7,18 +7,20 @@
  */
 namespace Phpzc\Redis;
 
-use redisent\Redis;
+use \Redis;
+
+
 /**
  * Class RedisCache
  *
  *
- * @method \redisent\Redis|null SESSION() the redis db Store Session
- * @method \redisent\Redis|null COOKIE() the redis db Store COOKIE
- * @method \redisent\Redis|null CACHE() the redis db Store key value
- * @method \redisent\Redis|null ELK_LOG() the redis db Store elk log list data
- * @method \redisent\Redis|null API_LOG() the redis db Store api log data
- * @method \redisent\Redis|null TOKEN() the redis db Store token
- * @method \redisent\Redis|null LOCK() the redis db Store lock
+ * @method \Redis|null SESSION() the redis db Store Session
+ * @method \Redis|null COOKIE() the redis db Store COOKIE
+ * @method \Redis|null CACHE() the redis db Store key value
+ * @method \Redis|null ELK_LOG() the redis db Store elk log list data
+ * @method \Redis|null API_LOG() the redis db Store api log data
+ * @method \Redis|null TOKEN() the redis db Store token
+ * @method \Redis|null LOCK() the redis db Store lock
  *
  * @package Phpzc\Redis
  */
@@ -43,7 +45,7 @@ class RedisCache
      * @param $funcname
      * @param $arguments
      *
-     * @return \redisent\Redis|mixed
+     * @return \Redis|mixed
      * @throws \Exception
      */
     public static function __callStatic($funcname, $arguments)
@@ -56,7 +58,7 @@ class RedisCache
 
 
                 $config = RedisConfig::getConfig();
-                $obj = new Redis('redis://'.$config['host'].':'.$config['port'],3);
+                $obj = new \Redis('redis://'.$config['host'].':'.$config['port'],3);
                 if(!empty($config['auth'])){
                     $obj->auth($config['auth']);
                 }
