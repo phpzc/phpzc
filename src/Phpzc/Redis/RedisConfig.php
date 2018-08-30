@@ -16,6 +16,13 @@ namespace Phpzc\Redis;
  */
 class RedisConfig
 {
+    public static $config = [
+        'host'=>'127.0.0.1',
+        'port'=>6379,
+        'auth'=>'',
+        'db'=>0,
+    ];
+
 
     /**
      * 获取redis配置
@@ -23,13 +30,24 @@ class RedisConfig
      */
     public static function getConfig()
     {
-        return [
-            'host'=>'127.0.0.1',
-            'port'=>6379,
-            'auth'=>'',
-            'db'=>0,
-        ];
+        return static::$config;
     }
+
+    /**
+     * 设置redis配置
+     * @param        $host
+     * @param        $port
+     * @param string $auth
+     * @param int    $db
+     */
+    public static function setConfig($host,$port,$auth='',$db = 0)
+    {
+        static::$config['host'] = $host;
+        static::$config['port'] = $port;
+        static::$config['auth'] = $auth;
+        static::$config['db'] = $db;
+    }
+
 
     static $configDatabaseNumber = [
         'session' => 1,
