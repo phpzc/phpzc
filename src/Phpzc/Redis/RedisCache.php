@@ -7,7 +7,6 @@
  */
 namespace Phpzc\Redis;
 
-use \Redis;
 
 use Predis\Client;
 
@@ -15,13 +14,13 @@ use Predis\Client;
  * Class RedisCache
  *
  *
- * @method \Redis|null SESSION() the redis db Store Session
- * @method \Redis|null COOKIE() the redis db Store COOKIE
- * @method \Redis|null CACHE() the redis db Store key value
- * @method \Redis|null ELK_LOG() the redis db Store elk log list data
- * @method \Redis|null API_LOG() the redis db Store api log data
- * @method \Redis|null TOKEN() the redis db Store token
- * @method \Redis|null LOCK() the redis db Store lock
+ * @method Client|null SESSION() the redis db Store Session
+ * @method Client|null COOKIE() the redis db Store COOKIE
+ * @method Client|null CACHE() the redis db Store key value
+ * @method Client|null ELK_LOG() the redis db Store elk log list data
+ * @method Client|null API_LOG() the redis db Store api log data
+ * @method Client|null TOKEN() the redis db Store token
+ * @method Client|null LOCK() the redis db Store lock
  *
  * @package Phpzc\Redis
  */
