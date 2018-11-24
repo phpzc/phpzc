@@ -9,6 +9,7 @@ namespace Phpzc\Redis;
 
 use \Redis;
 
+use Predis\Client;
 
 /**
  * Class RedisCache
@@ -45,7 +46,7 @@ class RedisCache
      * @param $funcname
      * @param $arguments
      *
-     * @return \Redis|mixed
+     * @return \Predis\Client|mixed
      * @throws \Exception
      */
     public static function __callStatic($funcname, $arguments)
@@ -58,12 +59,19 @@ class RedisCache
 
 
                 $config = RedisConfig::getConfig();
-                $obj = new \Redis();
-                $obj->connect($config['host'],$config['port'],1);
+                //$obj = new \Redis();
+                $params = [
+                    'host' => $config['host'],
+                    'port' => $config['port'],
+                    'database' => $dbNum,
+                ];
+                $obj = new Client($params);
+                //$obj->connect($config['host'],$config['port'],1);
+
                 if(!empty($config['auth'])){
                     $obj->auth($config['auth']);
                 }
-                $obj->select($dbNum);
+                //$obj->select($dbNum);
                 self::$map[$funcname] = $obj;
 
             }
