@@ -68,6 +68,7 @@ class RedisSession implements \SessionHandlerInterface
     public function open($savePath, $sessName)
     {
         $this->lifeTime = ini_get('session.gc_maxlifetime');
+        return true;
     }
 
     public function close()
