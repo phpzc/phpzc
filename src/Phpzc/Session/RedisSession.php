@@ -112,7 +112,17 @@ class RedisSession implements \SessionHandlerInterface
         return true;
     }
 
+    function __destruct()
+    {
+        if(static::$redis){
+            if(staic::$redis instanceof \Redis ){
+                static::$redis->close();
+            }elseif(staic::$redis instanceof \Predis\Client){
+                static::$redis->disconnect();
+            }
 
+        }
+    }
 
 
 }
