@@ -32,7 +32,7 @@ class RedisSession implements \SessionHandlerInterface
 
 
     /**
-     * @var \Redis
+     * @var \Predis\Client
      */
     public static $redis = null;
 
@@ -52,6 +52,7 @@ class RedisSession implements \SessionHandlerInterface
         {
             static::$redis = RedisCache::SESSION();
 
+
             static::$instance = new static();
 
 
@@ -68,14 +69,15 @@ class RedisSession implements \SessionHandlerInterface
     public function open($savePath, $sessName)
     {
         $this->lifeTime = ini_get('session.gc_maxlifetime');
+
+        //echo 'open'.PHP_EOL;
         return true;
     }
 
     public function close()
     {
         $this->gc(ini_get('session.gc_maxlifetime'));
-        static::$redis->close();
-        static::$redis = null;
+
         return true;
     }
 
@@ -84,17 +86,25 @@ class RedisSession implements \SessionHandlerInterface
         //每次读取session重新设置时间
         static::$redis->expire($sessID, $this->lifeTime);
 
-        return static::$redis->get($sessID);
+        return strval(static::$redis->get($sessID));
     }
 
     public function write($sessID, $sessData)
     {
-        return static::$redis->setex($sessID, $this->lifeTime,$sessData);
+        if( static::$redis->setex($sessID, $this->lifeTime,$sessData) ){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function destroy($sessID)
     {
-        return static::$redis->delete($sessID);
+        if( static::$redis->delete($sessID) ){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function gc($sessMaxLifeTime)

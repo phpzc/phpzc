@@ -13,7 +13,12 @@ class RedisLock
 {
     public static function getCache()
     {
-        return RedisCache::CACHE();
+        if(extension_loaded('redis')){
+            return RedisCache::CACHE();
+        }else{
+            throw new RedisException('need redis extension');
+        }
+
     }
 
     /**
