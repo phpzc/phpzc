@@ -115,9 +115,9 @@ class RedisSession implements \SessionHandlerInterface
     function __destruct()
     {
         if(static::$redis){
-            if(staic::$redis instanceof \Redis ){
+            if(static::$redis instanceof \Redis ){
                 static::$redis->close();
-            }elseif(staic::$redis instanceof \Predis\Client){
+            }elseif(static::$redis instanceof \Predis\Client){
                 static::$redis->disconnect();
             }
 
