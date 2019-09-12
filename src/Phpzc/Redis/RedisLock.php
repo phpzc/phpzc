@@ -8,67 +8,54 @@
 
 namespace Phpzc\Redis;
 
+use Predis\Client;
 
 class RedisLock
 {
+
+    /**
+     * @return Client
+     */
     public static function getCache()
     {
-        if(extension_loaded('redis')){
-            return RedisCache::CACHE();
-        }else{
-            throw new RedisException('need redis extension');
-        }
-
+        return RedisCache::CACHE();
     }
 
     /**
      * 取锁成功 返回加锁设置的值
-     * @param $key
-     *
-     * @return bool|int
+     * @param string $key
+     * @param $lockValue
+     * @param int $timeout
+     * @return bool
      */
-    public static function getUniqueLock($key)
+    public static function getUniqueLock($key,$lockValue,$timeout = 30)
     {
-        $redisKey = 'redis_lock_'.$key;
+        $redisKey = __CLASS__.'@'.$key;
 
         $cache = self::getCache();
 
-        $expireTime = time() + 30;
+        $result = $cache->set($redisKey, $lockValue, 'EX', $timeout, 'NX');
 
-        if($cache->set($redisKey,$expireTime, 30))
-        {
-
-            return $expireTime;
-        }else{
-
-            return false;
-        }
-
+        return 'OK' === (string)$result;
     }
 
     /**
      * 获得锁的请求的程序 主动释放
-     * @param $key
-     * @param $lock_value  上次加锁时 指定的数值
+     * @param string $key
+     * @param $lockValue  上次加锁时 指定的数值
      *
-     * @return int
+     * @return bool
      */
-    public static function releaseLock($key,$lock_value)
+    public static function releaseLock($key,$lockValue)
     {
-        $redisKey = 'redis_lock_'.$key;
+        $redisKey = __CLASS__.'@'.$key;
 
         $cache = self::getCache();
 
+        $lua = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
 
-        //lua代码 原子删除
-        $lua_code=<<<EOT
-        if redis.call("get",KEYS[1]) == ARGV[1] then
-            return redis.call("del",KEYS[1])
-        else
-            return 0
-        end
-EOT;
+        $result = $cache->eval($lua, 1, $redisKey, $lockValue);
+        return 1 === $result;
 
-        return $cache->eval($lua_code,[$redisKey,$lock_value],1);
     }
 }

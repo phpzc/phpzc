@@ -10,16 +10,16 @@ namespace Phpzc\Redis;
 use Predis\Client;
 
 /**
- * Class RedisCache 优先使用扩展版本redis 不存在则使用predis
+ * Class RedisCache 使用predis
  *
  *
- * @method \Redis|\Predis\Client|null SESSION() the redis db Store Session
- * @method \Redis|\Predis\Client|null COOKIE() the redis db Store COOKIE
- * @method \Redis|\Predis\Client|null CACHE() the redis db Store key value
- * @method \Redis|\Predis\Client|null ELK_LOG() the redis db Store elk log list data
- * @method \Redis|\Predis\Client|null API_LOG() the redis db Store api log data
- * @method \Redis|\Predis\Client|null TOKEN() the redis db Store token
- * @method \Redis|\Predis\Client|null LOCK() the redis db Store lock
+ * @method Client SESSION() the redis db Store Session
+ * @method Client COOKIE() the redis db Store COOKIE
+ * @method Client CACHE() the redis db Store key value
+ * @method Client ELK_LOG() the redis db Store elk log list data
+ * @method Client API_LOG() the redis db Store api log data
+ * @method Client TOKEN() the redis db Store token
+ * @method Client LOCK() the redis db Store lock
  *
  * @package Phpzc\Redis
  */
@@ -44,7 +44,7 @@ class RedisCache
      * @param $funcname
      * @param $arguments
      *
-     * @return \Redis|\Predis\Client|mixed
+     * @return Client
      * @throws RedisException
      */
     public static function __callStatic($funcname, $arguments)
@@ -57,28 +57,15 @@ class RedisCache
 
 
                 $config = RedisConfig::getConfig();
-                if(extension_loaded('redis')){
 
-                    $obj = new \Redis();
-                    if( $obj->connect($config['host'],$config['port'],2) == false ){
-                        throw new RedisException('connect redis fail');
-                    }
+                $params = [
+                    'host' => $config['host'],
+                    'port' => $config['port'],
+                    'database' => $dbNum,
+                    'password' => $config['auth'],
+                ];
+                $obj = new Client($params);
 
-                    if(!empty($config['auth'])){
-                        if( $obj->auth($config['auth']) == false){
-                            throw new RedisException('redis auth fail');
-                        }
-                    }
-                    $obj->select($dbNum);
-                }else{
-                    $params = [
-                        'host' => $config['host'],
-                        'port' => $config['port'],
-                        'database' => $dbNum,
-                        'password' => $config['auth'],
-                    ];
-                    $obj = new Client($params);
-                }
 
                 self::$map[$funcname] = $obj;
 
