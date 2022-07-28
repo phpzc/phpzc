@@ -1,5 +1,7 @@
-<h1 align="center">Hi 👋, I'm phpzc</h1>
-<h3 align="center">🇨🇳 Beijing,China・🕹Web developer</h3>
+<img align="right" src="https://github-readme-stats.vercel.app/api?username=phpzc&show_icons=true&locale=en" alt="phpzc" />
+
+### Hi 👋, I'm phpzc
+🇨🇳 Beijing,China・🕹Web developer
 
 - 🌱 I’m currently learning **Golang**
 
@@ -7,4 +9,4 @@
 
 - 📫 How to reach me **1091796360@qq.com**
 
-<img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=phpzc&show_icons=true&locale=en&layout=compact" alt="phpzc" /><img align="center" src="https://github-readme-stats.vercel.app/api?username=phpzc&show_icons=true&locale=en" alt="phpzc" />
+
