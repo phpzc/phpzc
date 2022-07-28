@@ -10,7 +10,7 @@
 
 <p align="center">
   
-<p align="left"><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=phpzc&show_icons=true&locale=en&layout=compact" alt="phpzc" /></p>
+<p  align="left" class="col-12 col-md-6 col-lg-6" ><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=phpzc&show_icons=true&locale=en&layout=compact" alt="phpzc" /></p>
 
-<p align="right">&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=phpzc&show_icons=true&locale=en" alt="phpzc" /></p>
+<p align="right" class="col-12 col-md-6 col-lg-6" >&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=phpzc&show_icons=true&locale=en" alt="phpzc" /></p>
 </p>
