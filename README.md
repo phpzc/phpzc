@@ -8,6 +8,9 @@
 - 📫 How to reach me **1091796360@qq.com**
 
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=phpzc&show_icons=true&locale=en&layout=compact" alt="phpzc" /></p>
+<p align="center">
+  
+<p align="left"><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=phpzc&show_icons=true&locale=en&layout=compact" alt="phpzc" /></p>
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=phpzc&show_icons=true&locale=en" alt="phpzc" /></p>
+<p align="right">&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=phpzc&show_icons=true&locale=en" alt="phpzc" /></p>
+</p>
