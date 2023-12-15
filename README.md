@@ -3,7 +3,7 @@
 ### Hi 👋, I'm phpzc
 🇨🇳 Beijing,China・🕹Web developer
 
-- 🌱 I’m currently learning **Golang**
+- 🌱 I’m currently learning **Rust**
 
 - 📝 I regularly write articles on [https://www.phpzc.net](https://www.phpzc.net)
 
